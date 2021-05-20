@@ -1,0 +1,10 @@
+---
+more:
+  - name: Github
+    icon: "gdoc_github"
+    ref: "https://github.com/fedimint"
+    external: true
+  - name: Contact
+    icon: "gdoc_email"
+    ref: "mailto:elsirion@protonmail.com"
+    external: true
