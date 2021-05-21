@@ -34,13 +34,12 @@ Bitcoin is the first asset in human history that can truly be held in a federate
 if a certain quorum of people agrees. It is thus the perfect backing asset for a federated mint. A first, primitive
 version could work as follows:
 
-* A User sends BTC to the federation's wallet and in turn receives the corresponding amount of tokens. This operation
-is called "**peg-in**".
-* The user can then pay someone else using these tokens, which can work as follows:
+* **depostit**: A User sends BTC to the federation's wallet and in turn receives the corresponding amount of tokens.
+* **transfer**: The user can then pay someone else using these tokens, which works as follows:
   * The payer selects appropriately many tokens and sends them to the payee
-  * The payee exchanges these tokens for new ones using the federated mint, we call this operation "**reissuance**".
-  * Only then the payee accepts the transaction, as the reissuance may fail in case of a double spend.
-* Finally any user can redeem BTC for tokens again, this is called a "**peg-out**".
+  * The payee exchanges these tokens for new ones using the federated mint
+  * Only then the payee accepts the transaction, as the exchange may fail in case of a double spend
+* **withdraw**: Finally any user can redeem BTC for tokens again.
 
 We see that between peg-in and peg-outs there can be many internal transactions, so federated mints do not only provide
 excellent privacy nut also scaling. One problem with this primitive version is the enormous centralization pressure it
