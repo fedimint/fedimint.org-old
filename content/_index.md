@@ -63,8 +63,9 @@ federation.
 
 ## Existing projects
 We are currently aware of two efforts to build such a federated mint:
-* [SCRIT]: A half-finished implementation of a federated chaumian mint written in Go, developed by Frank Braun and Jonathan Logan.
-To our knowledge it does not support BTC backing (yet?), but was the first public implementation.
+* [SCRIT1]: A half-finished implementation of a federated chaumian mint written in Go, developed by Frank Braun and Jonathan Logan.
+It does not implement BTC backing, but was the first public implementation.
+* [SCRIT2]: A reimplementation of a federated chaumian mint written in Go, supporting multiple currencies, inter-currency swap transactions, receiver- and sender-initiated half-offline transactions as well as complex multiparty transactions. It is in private beta and has no direct linkage with bitcoin yet.
 You can read more on [Jonathan's blog].
 * MiniMint: A (for now) private prototype still under heavy development written in Rust. It already supports rudimentary BTC backing but
 no Lighning integration and is generally not considered stable enough yet. If you are interested pelase reach out to
