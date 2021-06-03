@@ -8,3 +8,7 @@ more:
     icon: "gdoc_email"
     ref: "mailto:elsirion@protonmail.com"
     external: true
+  - name: GPG key
+    icon: "gdoc_shield"
+    ref: "/elsirion.asc"
+    external: true
