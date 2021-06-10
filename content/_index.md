@@ -41,8 +41,8 @@ version could work as follows:
   * Only then the payee accepts the transaction, as the exchange may fail in case of a double spend
 * **withdraw**: Finally any user can redeem BTC for tokens again.
 
-We see that between peg-in and peg-outs there can be many internal transactions, so federated mints do not only provide
-excellent privacy nut also scaling. One problem with this primitive version is the enormous centralization pressure it
+We see that between deposit and withdrawal there can be many internal transactions, so federated mints do not only provide
+excellent privacy but also scaling. One problem with this primitive version is the enormous centralization pressure it
 exerts, as two federated mints won't accept each other's tokens, making big mints more attractive. This can be mitigated
 by integrating with Lightning. For this the federation needs to support two more operations:
 
