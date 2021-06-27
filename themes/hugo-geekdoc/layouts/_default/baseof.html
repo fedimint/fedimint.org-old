@@ -32,4 +32,5 @@
 
     {{ partial "foot" . }}
 </body>
+{{ if .Params.katex}}{{ partial "katex.html" . }}{{ end }}
 </html>
