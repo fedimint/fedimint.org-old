@@ -101,7 +101,7 @@ version of the algorithm used for the chain tip consensus. Each round each parti
 
 The median argument works similarly and we achieve a honest consensus on fee rates.
 
-### Randomness beacon
+### Randomness beacon (soon™)
 In some cases it is useful to have access to agreed-upon, fair randomness. Thus every round every participant also
 proposes 32bytes of random data. The ones included in the consensus outcome are then XORed to form the round's
 randomness beacon. We note that this is only safe if the items proposed to the consensus are encrypted till there is
