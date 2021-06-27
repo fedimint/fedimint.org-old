@@ -1,11 +1,15 @@
 {{ $current := . }}
-{{ template "tree-nav" dict "sect" .Site.Home.Sections "current" $current }}
+{{ template "tree-nav" dict "sect" .Site.Home.Sections "current" $current "top" true }}
 
 <!-- templates -->
 {{ define "tree-nav" }}
     {{ $current := .current }}
 
     <ul class="gdoc-nav__list">
+        {{ if .top }}
+        <li><span class="flex"><a href="/" class="gdoc-nav__entry {{ if $current.IsHome }}is-active{{ end }}">Home</a></span></li>
+        {{ end }}
+
         {{ range .sect.GroupBy "Weight" }}
             {{ range .ByTitle }}
             {{ if not .Params.GeekdocHidden }}
@@ -38,7 +42,7 @@
             {{ end }}
 
             {{ if $isParent }}
-                {{ template "tree-nav" dict "sect" .Pages "current" $current}}
+                {{ template "tree-nav" dict "sect" .Pages "current" $current "top" false }}
             {{ end }}
             </li>
             {{ end }}
