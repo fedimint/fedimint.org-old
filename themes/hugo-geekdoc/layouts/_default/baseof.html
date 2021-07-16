@@ -4,7 +4,7 @@
 <head>
     {{ partial "head/meta" . }}
     <title>{{ if not (eq .Kind "home") }}{{ partial "title" . }} | {{ end }}{{ .Site.Title }}</title>
-
+    {{ if .Params.asciinema}}{{ partial "asciinema.html" . }}{{ end }}
     {{ partial "head/favicons" . }}
     {{ partial "head/others" . }}
 </head>
@@ -16,7 +16,7 @@
         <input type="checkbox" class="hidden" id="menu-control" />
         {{ partial "site-header" (dict "Root" . "MenuEnabled" true) }}
 
-        <main class="container flex flex-even">
+        <main class="container flex flex-even" {{ if .Params.fullwidth }}style="max-width: 100%"{{ end }}>
             <aside class="gdoc-nav">
                 {{ partial "menu" . }}
             </aside>
