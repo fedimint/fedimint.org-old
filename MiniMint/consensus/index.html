@@ -140,7 +140,8 @@ protocol. In the following we will use <span class=math>\(n\)</span> as the tota
 amount of faulty ones among them.</p>
 <p>We define a BFT consensus algorithm as as an algorithm that allows all honest parties to agree on a common
 set of items as long as less or equal than <span class=math>\(f\)</span> of the participants are malicious. These items may be contributed by
-any participant and there should be no risk of targeted censorship of items. One such protocol is <a href=HBBFT>Honey Badger BFT</a>. We will mainly use it as a reference for BFT consensus properties but note that similar but more efficient ones
+any participant and there should be no risk of targeted censorship of items. One such protocol is <a href=https://eprint.iacr.org/2016/199.pdf>Honey Badger</a> BFT
+(HBBFT). We will mainly use it as a reference for BFT consensus properties but note that similar but more efficient ones
 exist (most notably <a href=https://eprint.iacr.org/2020/841.pdf>Dumbo</a> and <a href=https://arxiv.org/pdf/2103.09425>hybrids</a> built on top of it).</p>
 <p>We generally assume the consensus to run in rounds, producing a common subset of the contributions made by the
 participants. At the start of each round each participant <span class=math>\(i\)</span> is expected to propose a set of items <span class=math>\(C_i\)</span> to the
