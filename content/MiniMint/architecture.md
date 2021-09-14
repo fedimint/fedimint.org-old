@@ -1,143 +1,58 @@
 ---
 title: Architecture
-katex: true
-markup: "mmark"
 ---
 
-MiniMint is a highly experimental Rust implementation of a federated chaumian mint on top of Bitcoin. If you are
+<i>MiniMint is a highly experimental Rust implementation of a federated chaumian mint on top of Bitcoin. If you are
 interested in taking a look feel free to [reach out](mailto:elsirion@protonmail.com). In the following we will try to
 illuminate the high level architecture. Since this is probably not the only way to build such a federated mint we will
 only talk about MiniMint in particular here. Other projects like SCRIT made other design decisions that are not
-reflected. Maybe a more comprehensive comparison can be written at a later date.
+reflected. Maybe a more comprehensive comparison can be written at a later date.</i>
 
-As for now, MiniMint consists of the following parts:
-* **Wallet**: A consensus-aware/deterministic multisig on-chain wallet.
-* **Mint**: A chaumian mint supporting threshold cryptography.
-* **(Lightning)**: Some way to integrate with Lightning. There exist multiple possible solutions, all with their own
-  trade-offs as we will go into later. For now it is not an integral part of MiniMint.
-* **Consensus**: A consensus algorithm allowing these components to play nicely with each other even in adversarial
-  environments. It is the core part that binds all the other parts together.
-  
-## Consensus
-Because it takes such a central part in a federated mint we will begin with explaining the properties of 
-[Byzantine Fault Tolerant (BFT)](https://en.wikipedia.org/wiki/Byzantine_fault) consensus algorithms.
-A byzantine fault does not only allow a party to go offline, but also to maliciously continue participating in the
-protocol. In the following we will use $$n$$ as the total number of participants in a protocol and $$f$$ as the maximum
-amount of faulty ones among them.
+MiniMint started out as a federated chaumian e-cash prototype.
+By now it is a more general framework for federated financial applications.
+At its core is lies the ability to agree on and process transactions.
+The possible input and output types of these transactions are defined by modules.
 
-We define a BFT consensus algorithm as as an algorithm that allows all honest parties to agree on a common
-set of items as long as less or equal than $$f$$ of the participants are malicious. These items may be contributed by
-any participant and there should be no risk of targeted censorship of items. One such protocol is [Honey Badger BFT]
-(HBBFT). We will mainly use it as a reference for BFT consensus properties but note that similar but more efficient ones
-exist (most notably [Dumbo] and [hybrids] built on top of it).
+To implement the federated e-cash functionality there currently exist two modules:
+* **Fediwallet**: a federated on-chain wallet, supporting deposits and withdrawals
+* **Fedimint**: a federated e-cash mint, supporting issuance and spending of blind signed tokens of diiferent denominations
 
-We generally assume the consensus to run in rounds, producing a common subset of the contributions made by the
-participants. At the start of each round each participant $$i$$ is expected to propose a set of items $$C_i$$ to the
-consensus. After the BFT consensus algorithm has finished (note: this involves a lot of back-and-forth communication
-which we ignore for now) every honest participant learns the same subset $$C \subseteq \{C_1, \dots, C_n\}$$. The
-consensus set $$C$$ contains at least $$n-f$$ contributions from different participants. Note how this implies that
-if more than $$f$$ participants propose the same item said item is guaranteed to be included in the next consensus
-output.
+In the future other modules, e.g. to integrate Lightning, smart contracts or even a federated market place could be implemented.
 
-The consensus protocols we are discussing, asynchronous ones, can only handle about $$\frac{1}{3}$$ faulty nodes, so this will
-also be our assumption when building our protocol on top if not stated otherwise.
+## Main loop
+The main functionality is implemented in one big loop shown below.
 
-[Honey Badger BFT]: https://eprint.iacr.org/2016/199.pdf
-[Dumbo]: https://eprint.iacr.org/2020/841.pdf
-[hybrids]: https://arxiv.org/pdf/2103.09425
+![Control and data flow in MiniMint](../architecture.svg)
 
-## Wallet
-To be backed by Bitcoin the federation needs a federated on-chain wallet. It is used to receive deposits that clients
-exchange for blind tokens and to make payouts when clients want to withdraw. Generally it is just a multisig wallet
-defined by a script descriptor. For example
+A BFT consensus algorithm is used to agree on a set of consensus items.
+These consist of transactions submitted by clients and other data proposed by modules.
+This globally agreed-upon set is then split into module-specific items and transactions.
+Module specific items are given to the respective modules first to prepare them for the consensus round.
 
-```
-wsh(sortedmulti(3,A,B,C,D))
-```
+After that the transactions are processed by checking that the sum of input amounts is greater or equalt to outputs plus fees.
+If that is the case the inputs and outputs are delegated to their respective module for processing.
+If any is deemed invalid by a module (e.g. invalid signature) the transaction is discarded.
 
-where `A`, `B`, `C` and `D` are the public keys of the federation members. 
+After all transactions have been processed the next consensus proposal is prepared.
+It consists of transactions submitted by clients and module specific items.
 
-Yet, notable differences exist. Other than most wallets we do not require extended public keys since we define our own
-derivation scheme. Furthermore, the wallet can not rely on local fee estimation and the local chain tip since these
-might be different for all members. Instead it uses the consensus algorithm to agree on these. Our particular protocol
-will also use a randomness beacon.
+## Modules
+Each module defines an **input**, **output** and **consensus item** type.
+Modules also keep their own state using the same key-value store as MiniMint.
+See the [database documentation](database.md) for more information.
 
-### Chain tip consensus
-To validate transactions a wallet needs to know the current chain tip. The problem with this is that different
-federation members might see different chain tips either due to latency or even shallow forks.
+| Module     | Input      | Output        | Consensus Items                                                                        |
+|------------|------------|---------------|----------------------------------------------------------------------------------------|
+| FediWallet | Deposit    | Withdrawal    | * Block height, fees and randomness beacon<br>* Signatures for withdrawal transactions |
+| FediMint   | Coin spend | Coin issuance | * Partial blind signatures of issued coins                                             |
 
-To avoid the forking
-problem we can just define that our internal chain tip is always e.g. 100 blocks behind the real one. This should
-sufficiently mitigate the risk of being on different forks (bitcoin itself would be in trouble with such deep forks).
-But the latency problem remains.
+## Client interaction
+Clients communicate with federation members via a REST API.
+They are expected to communicate with as many members as necessary for the required assurances since some might be malicious.
 
-To solve this we use the consensus, each round each participant does the following:
-1. Query `bitcoind` for the current block height
-2. If the block height shrank, use the previous one
-3. Propose `height - 100` as the consensus height
-4. Receive peer proposals and use median as the new consensus height
-
-Due to the assumption that less than $$\frac{1}{3}$$ of the participants are malicious, this will always leads to a
-value that either was proposed by a honest participant or lies between two honest values to be chosen. Let's say that
-all $$f$$ malicious proposals and $$n-2f$$ honest proposals are accepted, then $$f < n-2f$$ due to the previous
-requirement. It is easy to see that the $$f$$ malicious proposals do not suffice to meaningfully alter the median.
-
-Of course this assumes that all honest participants stay reasonable close to the real chain tip, but this is the task
-of the operators and outside our protocol.
-
-### Fee consensus
-We also face a similar problem when spending Bitcoin. While the destinations and amounts are generally assumed to be
-outputs of the consensus protocol and thus unproblematic one factor of transactions is not easily made deterministic:
-the fees. But to avoid depletion attacks by overpaying fees we need to agree on them.
-
-Naively we could use an algorithm that uses on-chain analysis to determine proper fee levels. But we only agree on
-a tip buried 100 blocks deep, which would make the algorithm quite unresponsive. Furthermore other algorithms that take
-the mempool into account may be preferable, but agreeing on the mempool is a fools errand. Instead we use a modified
-version of the algorithm used for the chain tip consensus. Each round each participant does the following:
-
-1. Query `bitcoind` for the current optimal fee rate
-3. Propose said rate as the consensus fee rate
-4. Receive peer proposals and use median as the new consensus height
-
-The median argument works similarly and we achieve a honest consensus on fee rates.
-
-### Randomness beacon (soon™)
-In some cases it is useful to have access to agreed-upon, fair randomness. Thus every round every participant also
-proposes 32bytes of random data. The ones included in the consensus outcome are then XORed to form the round's
-randomness beacon. We note that this is only safe if the items proposed to the consensus are encrypted till there is
-agreement on which contributions will be included. This is the case for HBBFT. Otherwise an attacker could wait for the
-other participants to announce their contribution and then adaptively chose his own to influence the outcome.
-
-### Address Derivation
-To allow clients to generate deposit addresses independent of the federation we do not use BIP32 derivation to
-generate new addresses from the wallet descriptor, but a custom derivation scheme. We instead use a pay-to-contract
-construction where a "contract" is hashed and added to all keys in the descriptor (added in the exponent in case of the
-pub key). A descriptor with derived keys can then trivially be transformed into an address. 
-
-In MiniMint the "contract" is just a public key that can later be used to tie the deposit to a issuance transaction.
-
-### Receiving Bitcoin
-When depositing Bitcoin into the federation a client proceeds as follows:
-
-1. Generate public/secret key pair
-2. Tweak federation descriptor with public key
-3. Send BTC to the resulting address
-4. Generate [TxOutProof] and fetch raw transaction. These compact data structures allow the federation to verify the
-   deposit with only the block hashes being synced and not the whole chain.
-5. The tweak together with the TxOutProof and the raw transaction can now be sent to the federation to prove money was
-   deposited. The federation should require a signature using the secret key.
-   
-Note that only once the federation is in possession of the tweak they can actually spend the funds as it is also needed
-to tweak the private keys.
-
-[TxOutProof]: https://bitcoincore.org/en/doc/0.21.0/rpc/blockchain/gettxoutproof/
-
-### Sending Bitcoin
-Once the federation agrees on paying Bitcoin to a set of destinations every participant deterministically selects 
-the necessary outputs. The previously agreed-upon fee rate is used to determine the fee. In case a change address is needed
-the randomness beacon is used to derive a random change address just as a deposit address would be derived.
-
-This transaction is then signed by each participant individually and the signatures broadcasted via the consensus
-protocol. Note that due to the transaction being generated deterministically it does not need to be exchanged itself.
-
-After receiving sufficient signatures each party can assemble the final transaction and broadcast it.
+Communication is asynchronous. First clients submit a transaction. After that they can query the transaction's status.
+If the transaction is found to be faulty the status will be **error** and the transaction will not be submitted to the consensus.
+Once a transaction was included in a consensus round its state changes from **proposed** to **accepted** or **error** in case there was a previously undetected problem (e.g. quick double spend).
+Note that the accepted state is not final.
+Depending on the module outputs may need further action, e.g. generating blind signatures or actually submitting a withdrawal transaction.
+These will show up in the status as they become available.
