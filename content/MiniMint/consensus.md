@@ -12,7 +12,7 @@ amount of faulty ones among them.
 
 We define a BFT consensus algorithm as as an algorithm that allows all honest parties to agree on a common
 set of items as long as less or equal than $$f$$ of the participants are malicious. These items may be contributed by
-any participant and there should be no risk of targeted censorship of items. One such protocol is [Honey Badger BFT]
+any participant and there should be no risk of targeted censorship of items. One such protocol is [Honey Badger] BFT 
 (HBBFT). We will mainly use it as a reference for BFT consensus properties but note that similar but more efficient ones
 exist (most notably [Dumbo] and [hybrids] built on top of it).
 
@@ -27,6 +27,6 @@ output.
 The consensus protocols we are discussing, asynchronous ones, can only handle about $$\frac{1}{3}$$ faulty nodes, so this will
 also be our assumption when building our protocol on top if not stated otherwise.
 
-[Honey Badger BFT]: https://eprint.iacr.org/2016/199.pdf
+[Honey Badger]: https://eprint.iacr.org/2016/199.pdf
 [Dumbo]: https://eprint.iacr.org/2020/841.pdf
 [hybrids]: https://arxiv.org/pdf/2103.09425
