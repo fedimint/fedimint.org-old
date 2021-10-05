@@ -70,8 +70,11 @@ You can read more on [Jonathan's blog].
 no Lighning integration and is generally not considered stable enough yet. If you are interested pelase reach out to
 [elsirion](mailto:elsirion@protonmail.com).
 
+There is also [an interview](https://www.youtube.com/watch?v=JXGmzTbyuEw&t=5330s) from [HCPP21] with smuggler and elsirion about both SCRIT and MiniMint.
+
 Please feel free to open PRs for corrections and additions.
 
 [SCRIT1]: https://github.com/scritcash
 [Jonathan's blog]: https://opaque.link/post/scrit-vision/
 [MiniMint]: MiniMint
+[HCPP21]: https://chaos.hcpp.cz/
