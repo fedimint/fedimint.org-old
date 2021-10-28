@@ -10,7 +10,7 @@ A byzantine fault does not only allow a party to go offline, but also to malicio
 protocol. In the following we will use $$n$$ as the total number of participants in a protocol and $$f$$ as the maximum
 amount of faulty ones among them.
 
-We define a BFT consensus algorithm as as an algorithm that allows all honest parties to agree on a common
+We define a BFT consensus algorithm as an algorithm that allows all honest parties to agree on a common
 set of items as long as less or equal than $$f$$ of the participants are malicious. These items may be contributed by
 any participant and there should be no risk of targeted censorship of items. One such protocol is [Honey Badger] BFT 
 (HBBFT). We will mainly use it as a reference for BFT consensus properties but note that similar but more efficient ones
