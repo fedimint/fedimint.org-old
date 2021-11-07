@@ -34,7 +34,7 @@ Bitcoin is the first asset in human history that can truly be held in a federate
 if a certain quorum of people agrees. It is thus the perfect backing asset for a federated mint. A first, primitive
 version could work as follows:
 
-* **depostit**: A User sends BTC to the federation's wallet and in turn receives the corresponding amount of tokens.
+* **deposit**: A User sends BTC to the federation's wallet and in turn receives the corresponding amount of tokens.
 * **transfer**: The user can then pay someone else using these tokens, which works as follows:
   * The payer selects appropriately many tokens and sends them to the payee
   * The payee exchanges these tokens for new ones using the federated mint
@@ -47,7 +47,7 @@ exerts, as two federated mints won't accept each other's tokens, making big mint
 by integrating with Lightning. For this the federation needs to support two more operations:
 
 * **ln-send**: pay an LN invoice using tokens.
-* **ln-receive**: issue an invoice to a user. Once it is payed the user receives the appropriate amount of tokens.
+* **ln-receive**: issue an invoice to a user. Once it is paid the user receives the appropriate amount of tokens.
 
 With these two operations any federated mint suddenly becomes interoperable with any other Lightning node, including
 other federated mints. The federation essentially becomes a hosted but federated Lightning wallet.
