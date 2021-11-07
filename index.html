@@ -1,6 +1,6 @@
 <!doctype html><html lang=en class=color-toggle-hidden>
 <head>
-<meta name=generator content="Hugo 0.88.1">
+<meta name=generator content="Hugo 0.89.1">
 <meta charset=utf-8>
 <meta name=viewport content="width=device-width,initial-scale=1">
 <meta name=color-scheme content="light dark">
@@ -184,7 +184,7 @@ How does it relate to Bitcoin
 if a certain quorum of people agrees. It is thus the perfect backing asset for a federated mint. A first, primitive
 version could work as follows:</p>
 <ul>
-<li><strong>depostit</strong>: A User sends BTC to the federation&rsquo;s wallet and in turn receives the corresponding amount of tokens.</li>
+<li><strong>deposit</strong>: A User sends BTC to the federation&rsquo;s wallet and in turn receives the corresponding amount of tokens.</li>
 <li><strong>transfer</strong>: The user can then pay someone else using these tokens, which works as follows:
 <ul>
 <li>The payer selects appropriately many tokens and sends them to the payee</li>
@@ -200,7 +200,7 @@ exerts, as two federated mints won&rsquo;t accept each other&rsquo;s tokens, mak
 by integrating with Lightning. For this the federation needs to support two more operations:</p>
 <ul>
 <li><strong>ln-send</strong>: pay an LN invoice using tokens.</li>
-<li><strong>ln-receive</strong>: issue an invoice to a user. Once it is payed the user receives the appropriate amount of tokens.</li>
+<li><strong>ln-receive</strong>: issue an invoice to a user. Once it is paid the user receives the appropriate amount of tokens.</li>
 </ul>
 <p>With these two operations any federated mint suddenly becomes interoperable with any other Lightning node, including
 other federated mints. The federation essentially becomes a hosted but federated Lightning wallet.</p>
