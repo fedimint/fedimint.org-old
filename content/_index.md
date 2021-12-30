@@ -73,12 +73,21 @@ no Lighning integration and is generally not considered stable enough yet. If yo
 [Open Transactions] also deserves a honorable mention since it already allowed for the issuance of e-cash tokens backed
 by Bitcoin held in a multisig wallet. It does not appear to support threshold issuance of e-cash tokens though.
 
-There is also [an interview](https://www.youtube.com/watch?v=JXGmzTbyuEw&t=5330s) from [HCPP21] with smuggler and elsirion about both SCRIT and MiniMint.
-
-Please feel free to open PRs for corrections and additions.
-
 [SCRIT1]: https://github.com/scritcash
 [Jonathan's blog]: https://opaque.link/post/scrit-vision/
 [MiniMint]: MiniMint
+[Open Transactions]: https://www.opentransactions.org/wiki/Main_Page
+
+## Resources
+* [An interview] from [HCPP21] with smuggler and elsirion about both SCRIT and MiniMint.
+* [A talk about MiniMint] at Adopting Bitcoin 2021
+* [Citadel Dispatch e45]
+* [SLP331] Eric Sirion – MiniMint, Federated Mints for Bitcoin scaling and privacy
+
+Please feel free to open PRs for corrections and additions.
+
 [HCPP21]: https://chaos.hcpp.cz/
-[Open Transactions](https://www.opentransactions.org/wiki/Main_Page)
+[an interview]: https://www.youtube.com/watch?v=JXGmzTbyuEw&t=5330s
+[A talk about MiniMint]: https://bitcointv.com/w/kHwmbLTWjsbaDTJpBewUmX
+[Citadel Dispatch e45]: https://bitcointv.com/w/uTtKtUmfWZ7mZDztVXVRWv
+[SLP331]: https://stephanlivera.com/episode/331/
