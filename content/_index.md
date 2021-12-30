@@ -70,6 +70,9 @@ You can read more on [Jonathan's blog].
 no Lighning integration and is generally not considered stable enough yet. If you are interested pelase reach out to
 [elsirion](mailto:elsirion@protonmail.com).
 
+[Open Transactions] also deserves a honorable mention since it already allowed for the issuance of e-cash tokens backed
+by Bitcoin held in a multisig wallet. It does not appear to support threshold issuance of e-cash tokens though.
+
 There is also [an interview](https://www.youtube.com/watch?v=JXGmzTbyuEw&t=5330s) from [HCPP21] with smuggler and elsirion about both SCRIT and MiniMint.
 
 Please feel free to open PRs for corrections and additions.
@@ -78,3 +81,4 @@ Please feel free to open PRs for corrections and additions.
 [Jonathan's blog]: https://opaque.link/post/scrit-vision/
 [MiniMint]: MiniMint
 [HCPP21]: https://chaos.hcpp.cz/
+[Open Transactions](https://www.opentransactions.org/wiki/Main_Page)
