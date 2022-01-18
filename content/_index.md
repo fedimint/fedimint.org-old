@@ -81,6 +81,7 @@ by Bitcoin held in a multisig wallet. It does not appear to support threshold is
 ## Resources
 * [An interview] from [HCPP21] with smuggler and elsirion about both SCRIT and MiniMint.
 * [Blockstream blogpost] announcing sponsorship
+* Bitcoin Magazine [Twitter space] that gives different perspectives
 * [A talk about MiniMint] at Adopting Bitcoin 2021
 * [Citadel Dispatch e45]
 * [SLP331] Eric Sirion – MiniMint, Federated Mints for Bitcoin scaling and privacy
@@ -90,6 +91,7 @@ Please feel free to open PRs for corrections and additions.
 [HCPP21]: https://chaos.hcpp.cz/
 [an interview]: https://www.youtube.com/watch?v=JXGmzTbyuEw&t=5330s
 [Blockstream blogpost]: https://medium.com/blockstream/blockstream-sponsors-federated-e-cash-as-a-bitcoin-scaling-technology-637ba05de7b3
+[Twitter space]: https://www.youtube.com/watch?v=A_7-DsreUQg
 [A talk about MiniMint]: https://bitcointv.com/w/kHwmbLTWjsbaDTJpBewUmX
 [Citadel Dispatch e45]: https://bitcointv.com/w/uTtKtUmfWZ7mZDztVXVRWv
 [SLP331]: https://stephanlivera.com/episode/331/
