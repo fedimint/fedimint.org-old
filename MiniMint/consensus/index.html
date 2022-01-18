@@ -3,7 +3,7 @@
 <meta charset=utf-8>
 <meta name=viewport content="width=device-width,initial-scale=1">
 <meta name=color-scheme content="light dark">
-<meta name=description content="Because it takes such a central part in a federated mint we will begin with explaining the properties of Byzantine Fault Tolerant (BFT) consensus algorithms. A byzantine fault does not only allow a party to go offline, but also to maliciously continue participating in the protocol. In the following we will use \(n\) as the total number of participants in a protocol and \(f\) as the maximum amount of faulty ones among them.">
+<meta name=description content="Because it takes such a central part in a federated mint we will begin with explaining the properties of Byzantine Fault Tolerant (BFT) consensus algorithms. A byzantine fault does not only allow a party to go offline, but also to maliciously continue participating in the protocol. In the following we will use $$n$$ as the total number of participants in a protocol and $$f$$ as the maximum amount of faulty ones among them.">
 <title>Consensus | FediMint</title>
 <link rel=icon href=/favicon/favicon-32x32.png type=image/x-icon>
 <link rel=icon href=/favicon/favicon-32x32.png type=image/x-icon>
@@ -134,23 +134,23 @@ hidden-mobile" itemprop=breadcrumb>
 <article class=gdoc-markdown>
 <h1>Consensus</h1>
 <p>Because it takes such a central part in a federated mint we will begin with explaining the properties of
-<a href=https://en.wikipedia.org/wiki/Byzantine_fault>Byzantine Fault Tolerant (BFT)</a> consensus algorithms.
+<a class=gdoc-markdown__link href=https://en.wikipedia.org/wiki/Byzantine_fault>Byzantine Fault Tolerant (BFT)</a> consensus algorithms.
 A byzantine fault does not only allow a party to go offline, but also to maliciously continue participating in the
-protocol. In the following we will use <span class=math>\(n\)</span> as the total number of participants in a protocol and <span class=math>\(f\)</span> as the maximum
+protocol. In the following we will use $$n$$ as the total number of participants in a protocol and $$f$$ as the maximum
 amount of faulty ones among them.</p>
 <p>We define a BFT consensus algorithm as an algorithm that allows all honest parties to agree on a common
-set of items as long as less or equal than <span class=math>\(f\)</span> of the participants are malicious. These items may be contributed by
-any participant and there should be no risk of targeted censorship of items. One such protocol is <a href=https://eprint.iacr.org/2016/199.pdf>Honey Badger</a> BFT
+set of items as long as less or equal than $$f$$ of the participants are malicious. These items may be contributed by
+any participant and there should be no risk of targeted censorship of items. One such protocol is <a class=gdoc-markdown__link href=https://eprint.iacr.org/2016/199.pdf>Honey Badger</a> BFT
 (HBBFT). We will mainly use it as a reference for BFT consensus properties but note that similar but more efficient ones
-exist (most notably <a href=https://eprint.iacr.org/2020/841.pdf>Dumbo</a> and <a href=https://arxiv.org/pdf/2103.09425>hybrids</a> built on top of it).</p>
+exist (most notably <a class=gdoc-markdown__link href=https://eprint.iacr.org/2020/841.pdf>Dumbo</a> and <a class=gdoc-markdown__link href=https://arxiv.org/pdf/2103.09425>hybrids</a> built on top of it).</p>
 <p>We generally assume the consensus to run in rounds, producing a common subset of the contributions made by the
-participants. At the start of each round each participant <span class=math>\(i\)</span> is expected to propose a set of items <span class=math>\(C_i\)</span> to the
+participants. At the start of each round each participant $$i$$ is expected to propose a set of items $$C_i$$ to the
 consensus. After the BFT consensus algorithm has finished (note: this involves a lot of back-and-forth communication
-which we ignore for now) every honest participant learns the same subset <span class=math>\(C \subseteq \{C_1, \dots, C_n\}\)</span>. The
-consensus set <span class=math>\(C\)</span> contains at least <span class=math>\(n-f\)</span> contributions from different participants. Note how this implies that
-if more than <span class=math>\(f\)</span> participants propose the same item said item is guaranteed to be included in the next consensus
+which we ignore for now) every honest participant learns the same subset $$C \subseteq {C_1, \dots, C_n}$$. The
+consensus set $$C$$ contains at least $$n-f$$ contributions from different participants. Note how this implies that
+if more than $$f$$ participants propose the same item said item is guaranteed to be included in the next consensus
 output.</p>
-<p>The consensus protocols we are discussing, asynchronous ones, can only handle about <span class=math>\(\frac{1}{3}\)</span> faulty nodes, so this will
+<p>The consensus protocols we are discussing, asynchronous ones, can only handle about $$\frac{1}{3}$$ faulty nodes, so this will
 also be our assumption when building our protocol on top if not stated otherwise.</p>
 </article>
 <div class="gdoc-page__footer flex flex-wrap justify-between">

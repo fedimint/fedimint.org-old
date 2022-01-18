@@ -138,14 +138,19 @@ hidden-mobile" itemprop=breadcrumb>
 <p>To be backed by Bitcoin the federation needs a federated on-chain wallet. It is used to receive deposits that clients
 exchange for blind tokens and to make payouts when clients want to withdraw. Generally it is just a multisig wallet
 defined by a script descriptor. For example</p>
-<pre tabindex=0><code>wsh(sortedmulti(3,A,B,C,D))</code></pre>
-<p>where <code>A</code>, <code>B</code>, <code>C</code> and <code>D</code> are the public keys of the federation members.</p>
+<pre tabindex=0><code>wsh(sortedmulti(3,A,B,C,D))
+</code></pre><p>where <code>A</code>, <code>B</code>, <code>C</code> and <code>D</code> are the public keys of the federation members.</p>
 <p>Yet, notable differences exist. Other than most wallets we do not require extended public keys since we define our own
 derivation scheme. Furthermore, the wallet can not rely on local fee estimation and the local chain tip since these
 might be different for all members. Instead it uses the consensus algorithm to agree on these. Our particular protocol
 will also use a randomness beacon.</p>
-<h2 id=chain-tip-consensus>Chain tip consensus</h2>
-<p>To validate transactions a wallet needs to know the current chain tip. The problem with this is that different
+<div class=gdoc-page__anchorwrap>
+<h2 id=chain-tip-consensus>
+Chain tip consensus
+<a data-clipboard-text=https://fedimint.org/MiniMint/wallet/#chain-tip-consensus class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Chain tip consensus" href=#chain-tip-consensus><svg class="icon gdoc_link"><use xlink:href="#gdoc_link"/></svg>
+</a>
+</h2>
+</div><p>To validate transactions a wallet needs to know the current chain tip. The problem with this is that different
 federation members might see different chain tips either due to latency or even shallow forks.</p>
 <p>To avoid the forking
 problem we can just define that our internal chain tip is always e.g. 100 blocks behind the real one. This should
@@ -158,14 +163,19 @@ But the latency problem remains.</p>
 <li>Propose <code>height - 100</code> as the consensus height</li>
 <li>Receive peer proposals and use median as the new consensus height</li>
 </ol>
-<p>Due to the assumption that less than <span class=math>\(\frac{1}{3}\)</span> of the participants are malicious, this will always leads to a
-value that either was proposed by a honest participant or lies between two honest values to be chosen. Let's say that
-all <span class=math>\(f\)</span> malicious proposals and <span class=math>\(n-2f\)</span> honest proposals are accepted, then <span class=math>\(f < n-2f\)</span> due to the previous
-requirement. It is easy to see that the <span class=math>\(f\)</span> malicious proposals do not suffice to meaningfully alter the median.</p>
+<p>Due to the assumption that less than $$\frac{1}{3}$$ of the participants are malicious, this will always leads to a
+value that either was proposed by a honest participant or lies between two honest values to be chosen. Let&rsquo;s say that
+all $$f$$ malicious proposals and $$n-2f$$ honest proposals are accepted, then $$f &lt; n-2f$$ due to the previous
+requirement. It is easy to see that the $$f$$ malicious proposals do not suffice to meaningfully alter the median.</p>
 <p>Of course this assumes that all honest participants stay reasonable close to the real chain tip, but this is the task
 of the operators and outside our protocol.</p>
-<h2 id=fee-consensus>Fee consensus</h2>
-<p>We also face a similar problem when spending Bitcoin. While the destinations and amounts are generally assumed to be
+<div class=gdoc-page__anchorwrap>
+<h2 id=fee-consensus>
+Fee consensus
+<a data-clipboard-text=https://fedimint.org/MiniMint/wallet/#fee-consensus class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Fee consensus" href=#fee-consensus><svg class="icon gdoc_link"><use xlink:href="#gdoc_link"/></svg>
+</a>
+</h2>
+</div><p>We also face a similar problem when spending Bitcoin. While the destinations and amounts are generally assumed to be
 outputs of the consensus protocol and thus unproblematic one factor of transactions is not easily made deterministic:
 the fees. But to avoid depletion attacks by overpaying fees we need to agree on them.</p>
 <p>Naively we could use an algorithm that uses on-chain analysis to determine proper fee levels. But we only agree on
@@ -178,33 +188,53 @@ version of the algorithm used for the chain tip consensus. Each round each parti
 <li>Receive peer proposals and use median as the new consensus height</li>
 </ol>
 <p>The median argument works similarly and we achieve a honest consensus on fee rates.</p>
-<h2 id=randomness-beacon>Randomness beacon</h2>
-<p>In some cases it is useful to have access to agreed-upon, fair randomness. Thus every round every participant also
-proposes 32bytes of random data. The ones included in the consensus outcome are then XORed to form the round's
+<div class=gdoc-page__anchorwrap>
+<h2 id=randomness-beacon>
+Randomness beacon
+<a data-clipboard-text=https://fedimint.org/MiniMint/wallet/#randomness-beacon class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Randomness beacon" href=#randomness-beacon><svg class="icon gdoc_link"><use xlink:href="#gdoc_link"/></svg>
+</a>
+</h2>
+</div><p>In some cases it is useful to have access to agreed-upon, fair randomness. Thus every round every participant also
+proposes 32bytes of random data. The ones included in the consensus outcome are then XORed to form the round&rsquo;s
 randomness beacon. We note that this is only safe if the items proposed to the consensus are encrypted till there is
 agreement on which contributions will be included. This is the case for HBBFT. Otherwise an attacker could wait for the
 other participants to announce their contribution and then adaptively chose his own to influence the outcome.</p>
-<h2 id=address-derivation>Address Derivation</h2>
-<p>To allow clients to generate deposit addresses independent of the federation we do not use BIP32 derivation to
+<div class=gdoc-page__anchorwrap>
+<h2 id=address-derivation>
+Address Derivation
+<a data-clipboard-text=https://fedimint.org/MiniMint/wallet/#address-derivation class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Address Derivation" href=#address-derivation><svg class="icon gdoc_link"><use xlink:href="#gdoc_link"/></svg>
+</a>
+</h2>
+</div><p>To allow clients to generate deposit addresses independent of the federation we do not use BIP32 derivation to
 generate new addresses from the wallet descriptor, but a custom derivation scheme. We instead use a pay-to-contract
-construction where a "contract" is hashed and added to all keys in the descriptor (added in the exponent in case of the
+construction where a &ldquo;contract&rdquo; is hashed and added to all keys in the descriptor (added in the exponent in case of the
 pub key). A descriptor with derived keys can then trivially be transformed into an address.</p>
-<p>In MiniMint the "contract" is just a public key that can later be used to tie the deposit to a issuance transaction.</p>
-<h2 id=receiving-bitcoin>Receiving Bitcoin</h2>
-<p>When depositing Bitcoin into the federation a client proceeds as follows:</p>
+<p>In MiniMint the &ldquo;contract&rdquo; is just a public key that can later be used to tie the deposit to a issuance transaction.</p>
+<div class=gdoc-page__anchorwrap>
+<h2 id=receiving-bitcoin>
+Receiving Bitcoin
+<a data-clipboard-text=https://fedimint.org/MiniMint/wallet/#receiving-bitcoin class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Receiving Bitcoin" href=#receiving-bitcoin><svg class="icon gdoc_link"><use xlink:href="#gdoc_link"/></svg>
+</a>
+</h2>
+</div><p>When depositing Bitcoin into the federation a client proceeds as follows:</p>
 <ol>
 <li>Generate public/secret key pair</li>
 <li>Tweak federation descriptor with public key</li>
 <li>Send BTC to the resulting address</li>
-<li>Generate <a href=https://bitcoincore.org/en/doc/0.21.0/rpc/blockchain/gettxoutproof/>TxOutProof</a> and fetch raw transaction. These compact data structures allow the federation to verify the
+<li>Generate <a class=gdoc-markdown__link href=https://bitcoincore.org/en/doc/0.21.0/rpc/blockchain/gettxoutproof/>TxOutProof</a> and fetch raw transaction. These compact data structures allow the federation to verify the
 deposit with only the block hashes being synced and not the whole chain.</li>
 <li>The tweak together with the TxOutProof and the raw transaction can now be sent to the federation to prove money was
 deposited. The federation should require a signature using the secret key.</li>
 </ol>
 <p>Note that only once the federation is in possession of the tweak they can actually spend the funds as it is also needed
 to tweak the private keys.</p>
-<h2 id=sending-bitcoin>Sending Bitcoin</h2>
-<p>Once the federation agrees on paying Bitcoin to a set of destinations every participant deterministically selects
+<div class=gdoc-page__anchorwrap>
+<h2 id=sending-bitcoin>
+Sending Bitcoin
+<a data-clipboard-text=https://fedimint.org/MiniMint/wallet/#sending-bitcoin class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Sending Bitcoin" href=#sending-bitcoin><svg class="icon gdoc_link"><use xlink:href="#gdoc_link"/></svg>
+</a>
+</h2>
+</div><p>Once the federation agrees on paying Bitcoin to a set of destinations every participant deterministically selects
 the necessary outputs. The previously agreed-upon fee rate is used to determine the fee. In case a change address is needed
 the randomness beacon is used to derive a random change address just as a deposit address would be derived.</p>
 <p>This transaction is then signed by each participant individually and the signatures broadcasted via the consensus
