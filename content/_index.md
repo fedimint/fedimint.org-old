@@ -85,6 +85,7 @@ by Bitcoin held in a multisig wallet. It does not appear to support threshold is
 * [A talk about MiniMint] at Adopting Bitcoin 2021
 * [Citadel Dispatch e45]
 * [SLP331] Eric Sirion – MiniMint, Federated Mints for Bitcoin scaling and privacy
+* [Bitcoin Explained with Ruben Somsen] about federated e-cash
 
 Please feel free to open PRs for corrections and additions.
 
@@ -95,3 +96,4 @@ Please feel free to open PRs for corrections and additions.
 [A talk about MiniMint]: https://bitcointv.com/w/kHwmbLTWjsbaDTJpBewUmX
 [Citadel Dispatch e45]: https://bitcointv.com/w/uTtKtUmfWZ7mZDztVXVRWv
 [SLP331]: https://stephanlivera.com/episode/331/
+[Bitcoin Explained with Ruben Somsen]: https://www.youtube.com/watch?v=alyYNIX0m3o
