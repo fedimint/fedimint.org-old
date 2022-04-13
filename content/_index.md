@@ -87,7 +87,7 @@ by Bitcoin held in a multisig wallet. It does not appear to support threshold is
 * [SLP331] Eric Sirion – MiniMint, Federated Mints for Bitcoin scaling and privacy
 * [Bitcoin Explained with Ruben Somsen] about federated e-cash
 
-Please feel free to [open PRs](https://github.com/fedimint/fedimint.org) for corrections and additions.
+Please feel free to [open PRs] for corrections and additions.
 
 [HCPP21]: https://chaos.hcpp.cz/
 [an interview]: https://www.youtube.com/watch?v=JXGmzTbyuEw&t=5330s
@@ -97,3 +97,4 @@ Please feel free to [open PRs](https://github.com/fedimint/fedimint.org) for cor
 [Citadel Dispatch e45]: https://bitcointv.com/w/uTtKtUmfWZ7mZDztVXVRWv
 [SLP331]: https://stephanlivera.com/episode/331/
 [Bitcoin Explained with Ruben Somsen]: https://www.youtube.com/watch?v=alyYNIX0m3o
+[open PRs]: https://github.com/fedimint/fedimint.org
