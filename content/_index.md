@@ -86,6 +86,7 @@ by Bitcoin held in a multisig wallet. It does not appear to support threshold is
 * [Citadel Dispatch e45]
 * [SLP331] Eric Sirion – MiniMint, Federated Mints for Bitcoin scaling and privacy
 * [Bitcoin Explained with Ruben Somsen] about federated e-cash
+* [Marty Bent's review of Federated Chaumian Mints] overviewing Obi Nwosu's and Eric Sirion's talks at Bitcoin Miami 2022
 
 Please feel free to [open PRs] for corrections and additions.
 
@@ -98,3 +99,17 @@ Please feel free to [open PRs] for corrections and additions.
 [SLP331]: https://stephanlivera.com/episode/331/
 [Bitcoin Explained with Ruben Somsen]: https://www.youtube.com/watch?v=alyYNIX0m3o
 [open PRs]: https://github.com/fedimint/fedimint.org
+[Marty Bent's review of Federated Chaumian Mints]: https://bitcoinmagazine.com/technical/chaumian-mints-distribute-trust-among-bitcoin-users
+
+## Support and Donations
+The Fedimint project is grateful for the generous support and donations we've received from various organisations and individuals including:
+
+* [Blockstream]
+* [Obi Nwosu]
+* [Human Rights Foundation]
+* [Ten 31]
+
+[Blockstream]: https://blockstream.com/
+[Obi Nwosu]: https://twitter.com/obi
+[Human Rights Foundation]: https://hrf.org/
+[Ten 31]: https://ten31.vc/
