@@ -79,6 +79,7 @@ by Bitcoin held in a multisig wallet. It does not appear to support threshold is
 [Open Transactions]: https://www.opentransactions.org/wiki/Main_Page
 
 ## Resources
+* [Q&A](https://docs.google.com/document/d/1ZLjWmczADUhCsaRjE2ta_8BbgqPxPhabzxhLEsUlmoo)
 * [An interview] from [HCPP21] with smuggler and elsirion about both SCRIT and MiniMint.
 * [Blockstream blogpost] announcing sponsorship
 * Bitcoin Magazine [Twitter space] that gives different perspectives
