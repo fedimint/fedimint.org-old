@@ -19,3 +19,6 @@ disablePathToLower = true
   [markup.tableOfContents]
     startLevel = 1
     endLevel = 9
+
+[params]
+geekdocLogo = "Fedimint-icon-cropped.png"
