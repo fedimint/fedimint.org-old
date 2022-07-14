@@ -1,6 +1,6 @@
 baseURL = "https://fedimint.org/"
 languageCode = "en-us"
-title = "FediMint"
+title = "Fedimint"
 
 theme = "hugo-geekdoc"
 

@@ -1,6 +1,6 @@
 ---
 more:
-  - name: FediMint
+  - name: Fedimint
     icon: "gdoc_github"
     ref: "https://github.com/fedimint"
     external: true
