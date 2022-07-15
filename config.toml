@@ -1,6 +1,6 @@
 baseURL = "https://fedimint.org/"
 languageCode = "en-us"
-title = "FediMint"
+title = "Fedimint"
 
 theme = "hugo-geekdoc"
 
@@ -19,3 +19,6 @@ disablePathToLower = true
   [markup.tableOfContents]
     startLevel = 1
     endLevel = 9
+
+[params]
+geekdocLogo = "Fedimint-icon-cropped.png"

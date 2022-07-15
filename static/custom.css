@@ -1,0 +1,24 @@
+:root {
+    --header-background: #170022;
+}
+
+:root,
+:root[color-mode="light"] {
+    --header-background: #170022;
+}
+
+:root[color-mode="dark"] {
+    --header-background: #170022;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --header-background: #170022;
+    }
+}
+
+@media (prefers-color-scheme: light) {
+    :root {
+        --header-background: #170022;
+    }
+}

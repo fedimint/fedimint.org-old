@@ -1,4 +1,4 @@
-# Welcome to FediMint.org
+# Welcome to Fedimint.org
 
 This site is intended to collect research and ideas about federated chaumian mints (or federated chaumian banks, but
 nobody likes banks) to scale Bitcoin while also making it more private.
