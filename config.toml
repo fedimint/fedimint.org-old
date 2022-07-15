@@ -21,4 +21,4 @@ disablePathToLower = true
     endLevel = 9
 
 [params]
-geekdocLogo = "Fedimint-icon-cropped.png"
+geekdocLogo = "fedimint-mark.svg"

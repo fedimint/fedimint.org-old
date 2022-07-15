@@ -1,24 +1,84 @@
 :root {
-    --header-background: #170022;
+    --header-background: #E8FFF2;
+    --header-font-color: #170022;
+
+    --body-background: #E8FFF2;
+    --body-font-color: #170022;
+
+    --accent-color: rgba(23, 0, 34, 0.05);
+    --accent-color-lite: rgba(23, 0, 34, 0.05);
 }
 
 :root,
 :root[color-mode="light"] {
-    --header-background: #170022;
+    --header-background: #E8FFF2;
+    --header-font-color: #170022;
+
+    --body-background: #E8FFF2;
+    --body-font-color: #170022;
+
+    --accent-color: rgba(23, 0, 34, 0.05);
+    --accent-color-lite: rgba(23, 0, 34, 0.05);
+}
+
+@media (prefers-color-scheme: light) {
+    :root {
+        --header-background: #E8FFF2;
+        --header-font-color: #170022;
+
+        --body-background: #E8FFF2;
+        --body-font-color: #170022;
+
+        --accent-color: rgba(23, 0, 34, 0.05);
+        --accent-color-lite: rgba(23, 0, 34, 0.05);
+    }
 }
 
 :root[color-mode="dark"] {
     --header-background: #170022;
+    --header-font-color: #E8FFF2;
+
+    --body-background: #170022;
+    --body-font-color: #E8FFF2;
+
+    --accent-color: rgba(232, 255, 221, 0.1);
+    --accent-color-lite: rgba(232, 255, 221, 0.1);
 }
 
 @media (prefers-color-scheme: dark) {
     :root {
         --header-background: #170022;
+        --header-font-color: #E8FFF2;
+
+        --body-background: #170022;
+        --body-font-color: #E8FFF2;
+
+        --accent-color: rgba(232, 255, 221, 0.1);
+        --accent-color-lite: rgba(232, 255, 221, 0.1);
+    }
+
+    .gdoc-brand_img{
+        content:url("fedimint-mark-light.svg");
     }
 }
 
-@media (prefers-color-scheme: light) {
-    :root {
-        --header-background: #170022;
-    }
+.gdoc-brand_img{
+    margin-right: 1rem;
+    height: 2rem
+}
+
+:root[color-mode="dark"] .gdoc-brand_img{
+    content:url("fedimint-mark-light.svg");
+}
+
+.gdoc-search__input {
+    background: transparent;
+    border: 2px solid rgba(23, 0, 34, 0.2);
+    border-radius: 4px;
+}
+
+:root[color-mode="dark"] .gdoc-search__input {
+    background: transparent;
+    border: 2px solid rgba(232, 255, 221, 0.2);
+    border-radius: 4px;
 }
