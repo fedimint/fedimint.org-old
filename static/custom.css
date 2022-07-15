@@ -71,6 +71,10 @@
     content:url("fedimint-mark-light.svg");
 }
 
+:root[color-mode="light"] .gdoc-brand_img{
+    content:url("fedimint-mark.svg");
+}
+
 .gdoc-search__input {
     background: transparent;
     border: 2px solid rgba(23, 0, 34, 0.2);
