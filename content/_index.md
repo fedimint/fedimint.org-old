@@ -110,9 +110,11 @@ The Fedimint project is grateful for the generous support and donations we've re
 * [Einundzwanzig]
 * [Human Rights Foundation]
 * [Ten 31]
+* [Spiral]
 
 [Blockstream]: https://blockstream.com/
 [Obi Nwosu]: https://twitter.com/obi
 [Einundzwanzig]: https://einundzwanzig.space/
 [Human Rights Foundation]: https://hrf.org/
 [Ten 31]: https://ten31.vc/
+[Spiral]: https://spiral.xyz/
