@@ -62,11 +62,13 @@ federation.
 
 ## Existing projects
 We are currently aware of two efforts to build such a federated mint:
+* [MiniMint] (to be renamed to *Fedimint* [[^1]): A modular federated e-cash prototype still under heavy development written in Rust. It already supports all main operations (deposit/withdraw via both on-chain Bitcoin and Lightning, e-cash transfers) and comes with a rudimentary CLI client. Some features are still missing and blocking mainnet deployments, but the project is moving quickly. If you are interested in contributing [check out the GitHub repository](https://github.com/fedimint/minimint).
+
+## Prior art
 * [SCRIT1]: A half-finished implementation of a federated chaumian mint written in Go, developed by Frank Braun and Jonathan Logan.
-It does not implement BTC backing, but was the first public implementation.
+  It does not implement BTC backing, but was the first public implementation.
 * SCRIT2: A reimplementation of a federated chaumian mint written in Go, supporting multiple currencies, inter-currency swap transactions, receiver- and sender-initiated half-offline transactions as well as complex multiparty transactions. It is in private beta and has no direct linkage with bitcoin yet.
-You can read more on [Jonathan's blog].
-* [MiniMint]: A modular federated e-cash prototype still under heavy development written in Rust. It already supports all main operations (deposit/withdraw via both on-chain Bitcoin and Lightning, e-cash transfers) and comes with a rudimentary CLI client. Some features are still missing and blocking mainnet deployments, but the project is moving quickly. If you are interested in contributing [check out the GitHub repository](https://github.com/fedimint/minimint). 
+  You can read more on [Jonathan's blog].
 
 [Open Transactions] also deserves a honorable mention since it already allowed for the issuance of e-cash tokens backed
 by Bitcoin held in a multisig wallet. It does not appear to support threshold issuance of e-cash tokens though.
@@ -116,3 +118,5 @@ The Fedimint project is grateful for the generous support and donations we've re
 [Human Rights Foundation]: https://hrf.org/
 [Ten 31]: https://ten31.vc/
 [Spiral]: https://spiral.xyz/
+
+[^1]: Initially *Fedimint* was meant to be an umbrella organization for the different efforts to build federated Chaumian e-cash mint. Unfortunately only one project, *MiniMint*, generated any traction and continues to be actively developed. That's why *Fedimint* became synonymous with *MiniMint* over time and today the two names are a source of much confusion. A renaming of *MiniMint will involve many code changes, that's why it hasn't happened yet.
