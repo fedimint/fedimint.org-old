@@ -66,16 +66,14 @@ We are currently aware of two efforts to build such a federated mint:
 It does not implement BTC backing, but was the first public implementation.
 * SCRIT2: A reimplementation of a federated chaumian mint written in Go, supporting multiple currencies, inter-currency swap transactions, receiver- and sender-initiated half-offline transactions as well as complex multiparty transactions. It is in private beta and has no direct linkage with bitcoin yet.
 You can read more on [Jonathan's blog].
-* [MiniMint]: A (for now) private prototype still under heavy development written in Rust. It already supports rudimentary BTC backing but
-no Lighning integration and is generally not considered stable enough yet. If you are interested pelase reach out to
-[elsirion](mailto:elsirion@protonmail.com).
+* [MiniMint]: A modular federated e-cash prototype still under heavy development written in Rust. It already supports all main operations (deposit/withdraw via both on-chain Bitcoin and Lightning, e-cash transfers) and comes with a rudimentary CLI client. Some features are still missing and blocking mainnet deployments, but the project is moving quickly. If you are interested in contributing [check out the GitHub repository](https://github.com/fedimint/minimint). 
 
 [Open Transactions] also deserves a honorable mention since it already allowed for the issuance of e-cash tokens backed
 by Bitcoin held in a multisig wallet. It does not appear to support threshold issuance of e-cash tokens though.
 
 [SCRIT1]: https://github.com/scritcash
 [Jonathan's blog]: https://opaque.link/post/scrit-vision/
-[MiniMint]: MiniMint
+[MiniMint]: https://github.com/fedimint/minimint
 [Open Transactions]: https://www.opentransactions.org/wiki/Main_Page
 
 ## Resources
