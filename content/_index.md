@@ -39,7 +39,7 @@ version could work as follows:
   * The payer selects appropriately many tokens and sends them to the payee
   * The payee exchanges these tokens for new ones using the federated mint
   * Only then the payee accepts the transaction, as the exchange may fail in case of a double spend
-* **withdraw**: Finally any user can redeem BTC for tokens again.
+* **withdraw**: Finally any user can redeem tokens for BTC again.
 
 We see that between deposit and withdrawal there can be many internal transactions, so federated mints do not only provide
 excellent privacy but also scaling. One problem with this primitive version is the enormous centralization pressure it
