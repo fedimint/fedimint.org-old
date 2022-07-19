@@ -1,12 +1,12 @@
 ---
 more:
-  - name: Fedimint
+  - name: GitHub
     icon: "gdoc_github"
     ref: "https://github.com/fedimint"
     external: true
-  - name: elsirion
+  - name: Twitter
     icon: "twitter-svgrepo-com"
-    ref: "https://twitter.com/EricSirion"
+    ref: "https://twitter.com/Fedimint"
     external: true
   - name: elsirion@protonmail.com
     icon: "gdoc_email"
